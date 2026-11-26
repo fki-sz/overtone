@@ -399,3 +399,91 @@ body {
 }
 
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* スマホ・タブレットでサウンドリストボタンがスクロールで動かないよう固定 */
+@media (max-width: 1024px) {
+  html,
+  body {
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  #openSoundListBtn {
+    position: fixed;
+    left: 50%;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 40;
+    margin: 0;
+  }
+}
+
+/* スマホ縦：左右の余白確保 & 背景選択のはみ出し防止 */
+@media (max-width: 768px) and (orientation: portrait) {
+  .modal-content,
+  .modal-box,
+  #soundModal .modal-inner,
+  #aboutModal .modal-inner {
+    width: calc(100% - 32px);
+    max-width: calc(100vw - 32px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* 背景アニメーション／テーマ選択コントロールの縮小・はみ出し防止 */
+  .bg-controls,
+  .background-controls,
+  .customize-panel,
+  [class*="bg-"][class*="control"],
+  [class*="theme-"][class*="select"] {
+    max-width: calc(100vw - 24px);
+    margin-left: auto;
+    margin-right: 12px;
+    transform: scale(0.9);
+    transform-origin: right center;
+  }
+
+  #speedSlider,
+  #toneSelect {
+    max-width: 100%;
+  }
+}
+
+/* スマホ横：プリセット＆カテゴリーを左、サウンドリストを右に分割 */
+@media (max-height: 500px) and (orientation: landscape) {
+  #soundModal .modal-content,
+  #soundModal .modal-inner,
+  #soundModal .modal-body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 14px;
+    width: calc(100% - 28px);
+    max-width: calc(100vw - 28px);
+    max-height: calc(100dvh - 24px);
+    overflow: hidden;
+  }
+
+  /* 左側：プリセットとカテゴリー */
+  #soundModal .preset-section,
+  #soundModal .category-section,
+  #soundModal .filter-area {
+    flex: 0 0 42%;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+
+  /* 右側：各サウンドの再生ボタン一覧 */
+  #soundListContainer {
+    flex: 1 1 58%;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+}
