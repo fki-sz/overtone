@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>soundlab_3</title>
+  <title>overtone</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/bg.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Kosugi&display=swap" rel="stylesheet">
 </head>
 <body>
-  
+
   <!-- 背景アニメーション領域（最背面・全画面） -->
   <div class="area">
     <ul class="circles">
@@ -20,66 +20,93 @@
     </ul>
   </div>
 
- <!-- ホーム画面左上：マスターコントロール（全体音量 ＆ 一時停止/再開ボタン） -->
+  <!-- サイト上部：overtone タイトルロゴ -->
+  <header class="site-header">
+    <h1 class="site-logo">overtone</h1>
+  </header>
+
+ <!-- ホーム画面左上：マスターコントロール（再生/一時停止ボタン ＆ 音声SVGアイコン＋全体音量） -->
   <div class="top-master-controls">
-    <button id="globalPauseBtn" class="global-stop-btn">Pause All</button>
+    <button id="globalPauseBtn" class="global-play-btn" type="button" aria-label="Play or Pause All">
+      <span class="global-btn-icon">▶︎</span>
+    </button>
     <div class="master-vol-wrapper">
-      <span class="master-label">Master Vol</span>
-      <input type="range" id="masterVolumeSlider" class="vol-slider" min="0" max="1" step="0.01" value="0.5">
+      <img
+        src="img/soundbk.svg"
+        data-icon-light="img/soundbk.svg"
+        data-icon-dark="img/sound.svg"
+        alt=""
+        class="volume-icon"
+        aria-hidden="true"
+      >
+      <input type="range" id="masterVolumeSlider" class="vol-slider" min="0" max="1" step="0.01" value="0.5" aria-label="Master Volume">
     </div>
   </div>
 
-  <!-- ホーム画面右上：About 呼び出しボタン -->
+  <!-- ホーム画面右上：言語切替 ＆ About 呼び出しボタン -->
   <div class="top-about-action">
-    <button id="openAboutBtn" class="about-top-btn">About</button>
+    <button id="langToggleBtn" class="lang-toggle-btn" type="button" aria-label="Switch Language">JA</button>
+    <button id="openAboutBtn" class="about-top-btn" type="button" data-i18n="aboutBtn">About</button>
   </div>
 
-  <!-- About モーダル（サウンドリストと同様のボックス表現） -->
+  <!-- About モーダル -->
   <div id="aboutModal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>About</h2>
-        <button id="closeAboutBtn" class="back-btn">Back</button>
+        <h2 data-i18n="aboutTitle">overtone</h2>
+        <button id="closeAboutBtn" class="back-btn" type="button" data-i18n="backBtn">Back</button>
       </div>
       <div class="about-body">
-        <p>This website allows you to mix ambient sounds and transports you to a variety of different spaces. By clicking the sound button in the center of the site, you can access multiple ambient sounds, combine them as you like, and adjust the volume balance to create an experience that feels just right for you. Alternatively, you can select one of our recommended sound presets to enjoy a curated ambient soundscape that immerses you in a specific setting.</p>
+        <p data-i18n="aboutBody">This website allows you to mix ambient sounds and transports you to a variety of different spaces. By clicking the sound button in the center of the site, you can access multiple ambient sounds, combine them as you like, and adjust the volume balance to create an experience that feels just right for you. Alternatively, you can select one of our recommended sound presets to enjoy a curated ambient soundscape that immerses you in a specific setting.</p>
       </div>
     </div>
   </div>
 
-  <!-- ホーム画面中央：Sound List 呼び出しボタン -->
+ <!-- ホーム画面中央：波紋付きの円形 Sound List 呼び出しボタン -->
   <div class="main-center-action">
-    <button id="openSoundListBtn" class="primary-btn">♬</button>
+    <button id="openSoundListBtn" class="primary-btn ripple-circle-btn" type="button" aria-label="Sound List">
+      <span class="ripple-ring"></span>
+      <span class="ripple-ring delay"></span>
+      <span class="circle-icon">
+        <img
+          src="img/soundlistbk.svg"
+          data-icon-light="img/soundlistbk.svg"
+          data-icon-dark="img/soundlist.svg"
+          alt=""
+          class="circle-svg-icon"
+          aria-hidden="true"
+        >
+      </span>
+    </button>
   </div>
 
   <!-- サウンドリスト（モーダル） -->
   <div id="soundModal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Sound Selection</h2>
-        <button id="closeSoundListBtn" class="back-btn">Back</button>
+        <h2 data-i18n="soundSelection">Sound Selection</h2>
+        <button id="closeSoundListBtn" class="back-btn" type="button" data-i18n="backBtn">Back</button>
       </div>
 
       <!-- おすすめプリセット領域 -->
       <div class="preset-section">
-        <h3>Presets</h3>
+        <h3 data-i18n="presetsTitle">Presets</h3>
         <div class="preset-buttons">
-          <button class="preset-btn" data-preset="rainyDay">Rainy Reading</button>
-          <button class="preset-btn" data-preset="forestRelax">Deep Forest</button>
-          <button class="preset-btn" data-preset="bonfireNight">Silent Bonfire</button>
-        
+          <button class="preset-btn" data-preset="rainyDay" data-i18n="presetRainy">Rainy Reading</button>
+          <button class="preset-btn" data-preset="forestRelax" data-i18n="presetForest">Deep Forest</button>
+          <button class="preset-btn" data-preset="bonfireNight" data-i18n="presetBonfire">Silent Bonfire</button>
         </div>
       </div>
 
       <!-- サウンドタグ（カテゴリフィルタ）領域 -->
       <div class="tag-section">
-        <h3>Categories</h3>
+        <h3 data-i18n="categoriesTitle">Categories</h3>
         <div class="tag-buttons">
-          <button class="tag-btn active-tag" data-category="all">All</button>
-          <button class="tag-btn" data-category="water">Water</button>
-          <button class="tag-btn" data-category="wood">Wood</button>
+          <button class="tag-btn active-tag" data-category="all" data-i18n="catAll">All</button>
+          <button class="tag-btn" data-category="water" data-i18n="catWater">Water</button>
+          <button class="tag-btn" data-category="wood" data-i18n="catWood">Wood</button>
           <!-- プリセット選択時にアクティブになる「Active」タブ -->
-          <button class="tag-btn" id="activePresetTagBtn" data-category="preset-active" style="display: none;">Active</button>
+          <button class="tag-btn" id="activePresetTagBtn" data-category="preset-active" data-i18n="catActive" style="display: none;">Active</button>
         </div>
       </div>
 
@@ -92,19 +119,18 @@
     </div>
   </div>
 
-
   <!-- 背景カスタマイズ用コントロールパネル（右下） -->
   <div class="bg-controls">
     <div class="bg-control-item">
-      <span class="bg-label">Speed</span>
+      <span class="bg-label" data-i18n="speedLabel">Speed</span>
       <input type="range" id="speedSlider" min="5" max="45" value="25" step="1">
     </div>
     <div class="bg-control-item">
-      <span class="bg-label">Tone</span>
+      <span class="bg-label" data-i18n="toneLabel">Tone</span>
       <select id="toneSelect" class="bg-select">
-        <option value="teal">Teal (Default)</option>
-        <option value="midnight">Midnight Blue</option>
-        <option value="sunset">Warm Sunset</option>
+        <option value="teal" data-i18n="toneTeal">Teal (Default)</option>
+        <option value="midnight" data-i18n="toneMidnight">Midnight Blue</option>
+        <option value="sunset" data-i18n="toneSunset">Warm Sunset</option>
       </select>
     </div>
   </div>
