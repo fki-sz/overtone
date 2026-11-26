@@ -389,3 +389,13 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+
+@media (max-width: 768px) {
+  #masterVolumeSlider,
+  .vol-slider,
+  .volume-control-wrapper {
+    display: none !important;
+  }
+}
+
+
