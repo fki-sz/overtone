@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // 1. サウンドマスターデータ
   const soundData = [
     { id: "sound1", name: "Rain", src: "sound/rain.mp3", category: "water" },
     { id: "sound2", name: "Coast", src: "sound/wave.mp3", category: "water" },
@@ -7,11 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: "sound5", name: "Forest", src: "sound/forest.mp3", category: "wood" }
   ];
 
+  // Audioインスタンス管理 ＆ 再生状態記録
   const audioMap = {};
   const userPlayingState = {};
   let masterVolume = 0.5;
   let activePresetKey = null;
   let isGloballyPaused = false;
+
+  // スマートフォン判定（iPadOS等の大画面タブレットは除外し、スマホ幅または小型タッチ端末を想定）
+  function isSmartphone() {
+    const isNarrowScreen = window.matchMedia("(max-width: 768px)").matches;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const isSmallViewport = Math.min(window.innerWidth, window.innerHeight) <= 480;
+    return isNarrowScreen || (isCoarsePointer && isSmallViewport);
+  }
 
   soundData.forEach(item => {
     const audio = new Audio(item.src);
@@ -20,6 +30,35 @@ document.addEventListener("DOMContentLoaded", () => {
     audioMap[item.id] = audio;
     userPlayingState[item.id] = false;
   });
+
+  // 音量スライダーの表示・非表示を端末に合わせて反映
+  function applyVolumeSliderVisibility() {
+    const hideSliders = isSmartphone();
+
+    const masterSlider = document.getElementById("masterVolumeSlider");
+    if (masterSlider) {
+      const masterWrap = masterSlider.closest(".master-volume-wrapper, .volume-control-wrapper") || masterSlider.parentElement;
+      if (masterWrap) {
+        masterWrap.style.display = hideSliders ? "none" : "";
+      } else {
+        masterSlider.style.display = hideSliders ? "none" : "";
+      }
+    }
+
+    soundData.forEach(item => {
+      const volWrap = document.getElementById(`volWrap-${item.id}`);
+      const soundItem = document.getElementById(`item-${item.id}`);
+      const isPlaying = soundItem ? soundItem.classList.contains("active") : false;
+
+      if (volWrap) {
+        if (hideSliders) {
+          volWrap.style.display = "none";
+        } else {
+          volWrap.style.display = isPlaying ? "flex" : "none";
+        }
+      }
+    });
+  }
 
   // モーダル開閉を最初に登録
   const soundModal = document.getElementById("soundModal");
@@ -30,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     openSoundListBtn.addEventListener("click", (e) => {
       e.preventDefault();
       soundModal.classList.add("open");
+      applyVolumeSliderVisibility();
     });
   }
 
@@ -101,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (slider) {
         slider.addEventListener("input", (e) => {
+          if (isSmartphone()) return;
           const indVol = parseFloat(e.target.value);
           audio.volume = Math.max(0, Math.min(1, indVol * masterVolume));
         });
@@ -117,11 +158,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!audio) return;
 
-    const targetVol = vol !== null ? parseFloat(vol) : (slider ? parseFloat(slider.value) : 1);
-    if (slider && vol !== null) {
-      slider.value = targetVol;
+    if (isSmartphone()) {
+      audio.volume = masterVolume;
+    } else {
+      const targetVol = vol !== null ? parseFloat(vol) : (slider ? parseFloat(slider.value) : 1);
+      if (slider && vol !== null) {
+        slider.value = targetVol;
+      }
+      audio.volume = Math.max(0, Math.min(1, targetVol * masterVolume));
     }
-    audio.volume = Math.max(0, Math.min(1, targetVol * masterVolume));
 
     audio.play().catch(err => console.error("再生エラー:", err));
     if (playBtn) {
@@ -129,7 +174,9 @@ document.addEventListener("DOMContentLoaded", () => {
       playBtn.classList.add("playing");
     }
     if (soundItem) soundItem.classList.add("active");
-    if (volWrap) volWrap.style.display = "flex";
+    if (volWrap) {
+      volWrap.style.display = isSmartphone() ? "none" : "flex";
+    }
     userPlayingState[id] = true;
   }
 
@@ -224,6 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const masterVolumeSlider = document.getElementById("masterVolumeSlider");
   if (masterVolumeSlider) {
     masterVolumeSlider.addEventListener("input", (e) => {
+      if (isSmartphone()) return;
       masterVolume = parseFloat(e.target.value);
       soundData.forEach(item => {
         const audio = audioMap[item.id];
@@ -332,4 +380,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  applyVolumeSliderVisibility();
+  window.addEventListener("resize", applyVolumeSliderVisibility);
 });
+
