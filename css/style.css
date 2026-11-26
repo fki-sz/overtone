@@ -87,17 +87,10 @@ textarea {
 }
 
 
-/* スマホ時：82px より少し上に配置 */
-@media (max-width: 768px) {
+/* スマホ時（縦・横）：線を非表示 */
+@media (max-width: 768px), (max-height: 500px) and (orientation: landscape) {
   .site-header::after {
-    top: 62px;
-  }
-}
-
-/* スマホ横時：ヘッダーがコンパクトになるためさらに少し上へ */
-@media (max-height: 500px) and (orientation: landscape) {
-  .site-header::after {
-    top: 45px;
+    display: none;
   }
 }
 
