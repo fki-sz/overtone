@@ -405,7 +405,7 @@ body {
   box-sizing: border-box;
 }
 
-/* スマホ・タブレットでサウンドリストボタンがスクロールで動かないよう固定 */
+/* 1. スマホ・タブレット：スクロールでサウンドリストボタンが動かないよう固定 */
 @media (max-width: 1024px) {
   html,
   body {
@@ -423,7 +423,7 @@ body {
   }
 }
 
-/* スマホ縦：左右の余白確保 & 背景選択のはみ出し防止 */
+/* 2. スマホ縦：左右の余白確保 & 背景選択のはみ出し防止 */
 @media (max-width: 768px) and (orientation: portrait) {
   .modal-content,
   .modal-box,
@@ -456,34 +456,63 @@ body {
   }
 }
 
-/* スマホ横：プリセット＆カテゴリーを左、サウンドリストを右に分割 */
+/* 3. スマホ横：ヘッダー（左上Sound Selection・右上Back）＋ 左にプリセット＆カテゴリー、右にサウンド一覧 */
 @media (max-height: 500px) and (orientation: landscape) {
   #soundModal .modal-content,
-  #soundModal .modal-inner,
-  #soundModal .modal-body {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 14px;
-    width: calc(100% - 28px);
+  #soundModal .modal-inner {
+    display: grid;
+    grid-template-columns: 42% 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "header header"
+      "preset main"
+      "category main";
+    column-gap: 16px;
+    row-gap: 8px;
+    width: calc(100vw - 28px);
     max-width: calc(100vw - 28px);
+    height: calc(100dvh - 24px);
     max-height: calc(100dvh - 24px);
+    padding: 12px 16px;
     overflow: hidden;
   }
 
-  /* 左側：プリセットとカテゴリー */
-  #soundModal .preset-section,
-  #soundModal .category-section,
-  #soundModal .filter-area {
-    flex: 0 0 42%;
-    max-height: 100%;
-    overflow-y: auto;
+  /* 1行目：左上に Sound Selection、右上に Back */
+  #soundModal .modal-header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0;
   }
 
-  /* 右側：各サウンドの再生ボタン一覧 */
-  #soundListContainer {
-    flex: 1 1 58%;
-    max-height: 100%;
+  /* 左列・上：プリセット */
+  #soundModal .preset-section,
+  #soundModal .preset-container,
+  #soundModal .presets,
+  #soundModal .preset-buttons {
+    grid-area: preset;
+    margin: 0;
+  }
+
+  /* 左列・下：カテゴリー */
+  #soundModal .category-section,
+  #soundModal .tag-container,
+  #soundModal .categories,
+  #soundModal .tag-buttons {
+    grid-area: category;
     overflow-y: auto;
+    min-height: 0;
+    margin: 0;
+  }
+
+  /* 右列全体：個々のサウンドリスト */
+  #soundListContainer {
+    grid-area: main;
+    overflow-y: auto;
+    min-height: 0;
+    padding-right: 4px;
+    margin: 0;
   }
 }
