@@ -6,68 +6,119 @@ document.addEventListener("DOMContentLoaded", () => {
     en: {
       aboutBtn: "About",
       aboutTitle: "overtone",
-      aboutBody: "This website allows you to mix ambient sounds and transports you to a variety of different spaces. By clicking the sound button in the center of the site, you can access multiple ambient sounds, combine them as you like, and adjust the volume balance to create an experience that feels just right for you. Alternatively, you can select one of our recommended sound presets to enjoy a curated ambient soundscape that immerses you in a specific setting.",
+      aboutBody: `
+        <h3 class="about-section-title">Introduction</h3>
+        <p>overtone is a web space designed to create a comfortable atmosphere and mental breathing room in your daily life by layering everyday environmental sounds.</p>
+        <p>In acoustics, an overtone refers to the higher frequency components that resonate alongside a fundamental tone, shaping a sound's timbre, richness, and depth. When multiple sounds overlap, their overtones combine to alter the warmth, brightness, and spatial dimension of the resonance. In the same way, by letting various environmental sounds resonate together, this project aims to create a rich soundscape tailored to you—guiding you into a space where you can feel at ease.</p>
+        <p>We hope this offers a quiet moment to step away from the rush of constant information and time, helping you reconnect with your own senses and pace.</p>
+
+        <h3 class="about-section-title">How to Use</h3>
+        <p class="about-step-title">1. Layer Your Sounds</p>
+        <p>Select any sounds that catch your ear from the sound list in the center, and adjust their volume balance freely. Alongside discovering your own combinations, you can also explore curated presets inspired by specific scenes and moods.</p>
+        <p class="about-step-title">2. Tune the Atmosphere</p>
+        <p>Along with the audio, you can adjust the background color and the movement speed of the visual shapes. Choose the brightness and rhythm intuitively to match your time, place, and mood, and shape an environment that feels right for you.</p>
+      `,
       soundSelection: "Sound Selection",
       backBtn: "Back",
       presetsTitle: "Presets",
       categoriesTitle: "Categories",
       catAll: "All",
       catWater: "Water",
-      catWood: "Wood",
+      catNature: "Nature",
+      catLife: "Life",
+      catCity: "City",
       catActive: "Active",
-      presetRainy: "Rainy Reading",
-      presetForest: "Deep Forest",
-      presetBonfire: "Silent Bonfire",
+      presetSummer:"midsummer shade",
+      presetOcean:"shoreline dusk",
+      presetHouse:"morning kitchen",
+      presetForest: "deep woods rain",
+      presetRainy: "rainy commute",
       speedLabel: "Speed",
       toneLabel: "Tone",
       toneTeal: "Teal (Default)",
       toneMidnight: "Midnight Blue",
       toneSunset: "Warm Sunset",
       sounds: {
-        sound1: "Rain",
-        sound2: "Coast",
-        sound3: "Waterfall",
-        sound4: "Fire",
-        sound5: "Forest"
+        sound1: "waves",
+        sound2: "stream-deep",
+        sound3: "stream",
+        sound4: "stream&birds",
+        sound5: "rainy forest",
+        sound6: "cicadas",
+        sound7: "brown cicadas",
+        sound8: "bell cricket",
+        sound9: "clock",
+        sound10: "running water",
+        sound11: "city traffic",
+        sound12: "rainy street"
       }
     },
     ja: {
       aboutBtn: "このサイトについて",
       aboutTitle: "overtone",
-      aboutBody: "環境音を自由に組み合わせて、さまざまな空間へと誘うサウンドスケープサイトです。画面下の再生ボタンから複数の環境音を選び、自分好みのバランスで重ねたり、おすすめのプリセットから特定の情景に浸ったりして過ごせます。",
+      aboutBody: `
+        <h3 class="about-section-title">はじめに</h3>
+        <p>overtone は、日常の環境音を重ね合わせることで、心地よい空気感と心の余白をつくるためのウェブ空間です。</p>
+        <p>音響学における「倍音（overtone）」とは、基音とともに響く高い周波数成分を指し、音の音色や豊かさ、奥行きを形づくる要素です。複数の音が重なり合うと、それぞれの倍音が混ざり合い、響きの温かさや明るさ、空間の広がりが変化します。同じように、さまざまな環境音を響き合わせることで、あなた自身に寄り添う豊かなサウンドスケープを生み出し、ほっと落ち着ける空間へと導くことを目指しています。</p>
+        <p>絶え間ない情報や時間の流れから少し離れ、自分の感覚やペースを取り戻す静かなひとときになれば幸いです。</p>
+
+        <h3 class="about-section-title">使い方</h3>
+        <p class="about-step-title">1. 音を重ねる</p>
+        <p>画面中央のサウンドリストから気になる音を選び、音量バランスを自由に調整できます。自分だけの組み合わせを見つけるほか、特定の情景や気分をイメージしたプリセットも楽しめます。</p>
+        <p class="about-step-title">2. 空間の雰囲気を整える</p>
+        <p>音だけでなく、背景の色合いや図形の動く速さも調整できます。時間や場所、そのときの気分に合わせて明るさやリズムを直感的に選び、心地よい環境を整えてみてください。</p>
+      `,
       soundSelection: "サウンド選択",
       backBtn: "戻る",
       presetsTitle: "プリセット",
       categoriesTitle: "カテゴリー",
       catAll: "すべて",
       catWater: "水",
-      catWood: "森・焚き火",
+      catNature: "自然",
+      catLife: "生活",
+      catCity: "街",
       catActive: "再生中",
-      presetRainy: "雨の日の読書",
-      presetForest: "深い森",
-      presetBonfire: "静かな焚き火",
+      presetSummer:"真夏の木陰",
+      presetOcean:"夕暮れの波打ち際",
+      presetHouse:"朝の台所",
+      presetForest: "雨の森の奥",
+      presetRainy: "雨の日の窓辺",
       speedLabel: "速さ",
       toneLabel: "色合い",
       toneTeal: "ティール（初期設定）",
       toneMidnight: "ミッドナイトブルー",
       toneSunset: "ウォームサンセット",
       sounds: {
-        sound1: "雨音",
-        sound2: "海岸の波",
-        sound3: "滝",
-        sound4: "焚き火",
-        sound5: "森のざわめき"
+        sound1: "波音",
+        sound2: "深い小川",
+        sound3: "小川の流れ",
+        sound4: "小川と鳥たち",
+        sound5: "雨の日の森",
+        sound6: "蝉の声",
+        sound7: "アブラゼミ",
+        sound8: "スズムシ",
+        sound9: "秒針の音",
+        sound10: "水道から流れる水",
+        sound11: "街の中",
+        sound12: "雨の日の街中"
       }
     }
   };
 
   // 2. サウンドマスターデータ
   const soundData = [
-    { id: "sound1", name: "Rain", src: "sound/rain.mp3", category: "water" },
-    { id: "sound2", name: "Coast", src: "sound/wave.mp3", category: "water" },
-    { id: "sound3", name: "Waterfall", src: "sound/waterfall.mp3", category: "water" },
-    { id: "sound4", name: "Fire", src: "sound/fire.mp3", category: "wood" },
-    { id: "sound5", name: "Forest", src: "sound/forest.mp3", category: "wood" }
+    { id: "sound1", name: "waves", src: "sound/waves.wav", category: "Water" },
+    { id: "sound2", name: "stream-deep", src: "sound/stream-deep.wav", category: "Water" },
+    { id: "sound3", name: "stream", src: "sound/stream.wav", category: "water" },
+    { id: "sound4", name: "stream&birds", src: "sound/stream&birds.wav", category: "Water" },
+    { id: "sound5", name: "rainyforest", src: "sound/rainyforest.wav", category: "Nature" },
+    { id: "sound6", name: "cicadas", src: "sound/cicadas.wav", category: "Nature" },
+    { id: "sound7", name: "brown cicada", src: "sound/cicadas2.wav", category: "Nature" },
+    { id: "sound8", name: "bell cricket", src: "sound/eveninginsects.wav", category: "Nature" },
+    { id: "sound9", name: "clock", src: "sound/clock.mp3", category: "Life" },
+    { id: "sound10", name: "running water", src: "sound/runningwater.wav", category: "Life" },
+    { id: "sound11", name: "city traffic", src: "sound/citytraffic.mp3", category: "City" },
+    { id: "sound12", name: "rainy street", src: "sound/rainystreet.mp3", category: "City" }
   ];
 
   // Audioインスタンス管理 ＆ 再生状態記録
@@ -132,7 +183,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.dataset.i18n;
       if (dict && dict[key]) {
-        el.textContent = dict[key];
+        if (key === "aboutBody") {
+          el.innerHTML = dict[key];
+        } else {
+          el.textContent = dict[key];
+        }
       }
     });
 
@@ -147,7 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
       langToggleBtn.textContent = lang === "en" ? "JA" : "EN";
     }
   }
-
 
   // 【機能】言語切替ボタンをクリックしたときに英語と日本語を入れ替える
   if (langToggleBtn) {
@@ -440,9 +494,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 【機能】おすすめプリセットの定義（プリセット名：{ サウンドID: 個別音量 }）
   const presets = {
-    rainyDay: { sound1: 0.7, sound2: 0.3 },
-    forestRelax: { sound3: 0.4, sound5: 0.8 },
-    bonfireNight: { sound4: 0.8, sound5: 0.2 }
+    Summer: { sound6: 0.6, sound2: 0.5 , sound4: 0.25},
+    Ocean: { sound1: 0.7, sound8: 0.35, sound11: 0.2 },
+    House: { sound10: 0.55, sound9: 0.7, sound4: 0.25 },
+    RainyForest: { sound5: 0.7, sound2: 0.4, sound6: 0.15 },
+    Rainyday: { sound12: 0.55, sound9: 0.7, sound10: 0.25 }
   };
 
   const presetButtons = document.querySelectorAll(".preset-btn");

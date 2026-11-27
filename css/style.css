@@ -350,9 +350,10 @@ textarea {
 
 .modal-header h2 {
   margin: 0;
-  font-size: 22px;
+  font-size: 27px;
   font-family: inherit;
   font-weight: normal;
+  letter-spacing: 0.06em;
   color: #ffffff;
 }
 
@@ -373,6 +374,10 @@ textarea {
 }
 
 .about-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 6px;
   font-size: 16px;
   line-height: 1.85;
   color: rgba(255, 255, 255, 0.92);
@@ -380,8 +385,42 @@ textarea {
   letter-spacing: 0.3px;
 }
 
+.about-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.about-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
 .about-body p {
-  margin: 0;
+  margin: 0 0 14px;
+}
+
+.about-body p:last-child {
+  margin-bottom: 0;
+}
+
+.about-section-title {
+  margin: 24px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+}
+
+.about-section-title:first-child {
+  margin-top: 0;
+}
+
+.about-step-title {
+  margin: 16px 0 4px !important;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.04em;
 }
 
 /* プリセットセクション */

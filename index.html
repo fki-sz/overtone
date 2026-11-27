@@ -56,9 +56,7 @@
         <h2 data-i18n="aboutTitle">overtone</h2>
         <button id="closeAboutBtn" class="back-btn" type="button" data-i18n="backBtn">Back</button>
       </div>
-      <div class="about-body">
-        <p data-i18n="aboutBody">This website allows you to mix ambient sounds and transports you to a variety of different spaces. By clicking the sound button in the center of the site, you can access multiple ambient sounds, combine them as you like, and adjust the volume balance to create an experience that feels just right for you. Alternatively, you can select one of our recommended sound presets to enjoy a curated ambient soundscape that immerses you in a specific setting.</p>
-      </div>
+      <div class="about-body" data-i18n="aboutBody"></div>
     </div>
   </div>
 
@@ -92,9 +90,11 @@
       <div class="preset-section">
         <h3 data-i18n="presetsTitle">Presets</h3>
         <div class="preset-buttons">
-          <button class="preset-btn" data-preset="rainyDay" data-i18n="presetRainy">Rainy Reading</button>
-          <button class="preset-btn" data-preset="forestRelax" data-i18n="presetForest">Deep Forest</button>
-          <button class="preset-btn" data-preset="bonfireNight" data-i18n="presetBonfire">Silent Bonfire</button>
+          <button class="preset-btn" data-preset="Summer" data-i18n="presetSummer">midsummer shade</button>
+          <button class="preset-btn" data-preset="Ocean" data-i18n="presetOcean">shoreline dusk</button>
+          <button class="preset-btn" data-preset="House" data-i18n="presetHouse">morning kitchen</button>
+          <button class="preset-btn" data-preset="RainyForest" data-i18n="presetForest">deep woods rain</button>
+          <button class="preset-btn" data-preset="Rainyday" data-i18n="presetRainy">rainy commute</button>
         </div>
       </div>
 
@@ -103,8 +103,10 @@
         <h3 data-i18n="categoriesTitle">Categories</h3>
         <div class="tag-buttons">
           <button class="tag-btn active-tag" data-category="all" data-i18n="catAll">All</button>
-          <button class="tag-btn" data-category="water" data-i18n="catWater">Water</button>
-          <button class="tag-btn" data-category="wood" data-i18n="catWood">Wood</button>
+          <button class="tag-btn" data-category="Water" data-i18n="catWater">Water</button>
+          <button class="tag-btn" data-category="Nature" data-i18n="catNature">Nature</button>
+          <button class="tag-btn" data-category="Life" data-i18n="catLife">Life</button>
+          <button class="tag-btn" data-category="City" data-i18n="catCity">City</button>
           <!-- プリセット選択時にアクティブになる「Active」タブ -->
           <button class="tag-btn" id="activePresetTagBtn" data-category="preset-active" data-i18n="catActive" style="display: none;">Active</button>
         </div>
